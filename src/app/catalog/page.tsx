@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { ImSpinner6 } from "react-icons/im";
 
-export default function SearchPage() {
+const SearchPage = () => {
   const searchParams = useSearchParams();
   const query = searchParams?.get('q') || '';
   const { fetchBooks, books, loading, error, setQuery } = useBookStore();
@@ -50,3 +50,5 @@ export default function SearchPage() {
     </section>
   )
 }
+
+export default SearchPage;

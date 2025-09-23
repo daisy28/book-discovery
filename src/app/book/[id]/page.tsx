@@ -5,8 +5,6 @@ import { useBookStore } from "../../../store/useBookstore";
 import { useParams } from "next/navigation";
 import { FaBook, FaBookOpen, FaRegHeart } from "react-icons/fa";
 import { ImSpinner6 } from "react-icons/im";
-import { MdAddCircleOutline } from "react-icons/md";
-import { FaRegCheckCircle } from "react-icons/fa";
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 import { IoIosAddCircle, IoIosAddCircleOutline } from "react-icons/io";
 
@@ -17,7 +15,7 @@ interface Book {
   authors?: { author: { key: string } }[];
   first_publish_date?: string;
   subjects?: string[];
-  revision?: number
+  revision?: number;
 }
 
 interface Author {
@@ -26,7 +24,7 @@ interface Author {
   photos: string[];
 }
 
-export default function BookPage() {
+const BookPage = () => {
   const { id } = useParams();
   const [book, setBook] = useState<Book | null>(null);
   const [author, setAuthor] = useState<Author | null>(null);
@@ -52,7 +50,6 @@ export default function BookPage() {
         const bookRes = await fetch(`https://openlibrary.org/works/${id}.json`);
         if (!bookRes.ok) throw new Error("Failed to fetch book details");
         const bookData = await bookRes.json();
-        console.log(bookData)
         setBook(bookData);
 
         const authorKey = bookData?.authors?.[0]?.author?.key;
@@ -60,7 +57,6 @@ export default function BookPage() {
           const authorRes = await fetch(`https://openlibrary.org${authorKey}.json`);
           if (authorRes.ok) {
             const authorData = await authorRes.json();
-            console.log(authorData)
             setAuthor(authorData);
           }
         }
@@ -136,7 +132,7 @@ useEffect(() => {
                   <h4 className={`font-[600] text-[10px] md:text-[16px] md:leading-[22px] leading-[16px] text-[#000] mb-4`}>Shipping and Delivery Time</h4>
                   <div className={`relative`}>
                     <input className={`w-full outline-none border border-[#000] p-1 pl-3 md:p-2 text-[10px] font-[400] leading-[16px] text-[#0000008a]`} type="text" placeholder="ZIP CODE" />
-                    <button className={`absolute right-0 w-[43px] top-0 bottom-0 bg-[#090909] flex justify-center items-center font-[700] text-[10px] leading-[16px] text-[#fff]`}>OK</button>
+                    <button className={`absolute right-0 w-[43px] top-0 bottom-0 bg-[#090909] cursor-pointer flex justify-center items-center font-[700] text-[10px] leading-[16px] text-[#fff]`}>OK</button>
                   </div>
                 </div>
 
@@ -149,7 +145,7 @@ useEffect(() => {
                     <FaRegHeart className={`w-[30px] h-[26px] md:w-[40px] md:h-[35px]`} /> 
                     <p className={`hidden md:block uppercase font-[700] text-[16px] leading-[22px] text-[#000] `}>add to wishlist</p>
                   </div>
-                  <button className={`md:order-0 bg-[#000] rounded-[35px] w-full md:w-[50%] p-2 uppercase font-[700] text-[10px] leading-[16px] text-center text-[#fff] `}>add to cart</button>
+                  <button className={`md:order-0 bg-[#000] rounded-[35px] cursor-pointer w-full md:w-[50%] p-2 uppercase font-[700] text-[10px] leading-[16px] text-center text-[#fff] `}>add to cart</button>
                 </div>
 
                 
@@ -169,15 +165,15 @@ useEffect(() => {
 
                 <div>
                   <div className={`flex flex-col gap-4 my-8`}>
-                    <button onClick={() => handleAdd("wantToRead")} className={`flex justify-between items-center`}>
+                    <button onClick={() => handleAdd("wantToRead")} className={`flex justify-between items-center cursor-pointer`}>
                       📚 Want to Read
                       {add ? <IoIosAddCircle className={`w-[20px] h-[20px] `} /> : <IoIosAddCircleOutline  className={`w-[20px] h-[20px]`} />}
                     </button>
-                    <button onClick={() => handleAdd("currentlyReading")} className={`flex justify-between items-center`}>
+                    <button onClick={() => handleAdd("currentlyReading")} className={`flex justify-between items-center cursor-pointer`}>
                       📖 Currently Reading
                       {currentlyReading ? <FaBookOpen className={`w-[20px] h-[20px]`} /> : <FaBook className={`w-[20px] h-[20px]`} />}
                     </button>
-                    <button onClick={() => handleAdd("read")} className={`flex justify-between items-center`}>
+                    <button onClick={() => handleAdd("read")} className={`flex justify-between items-center cursor-pointer`}>
                       ✅ Mark as Read
                       {alreadyRead ? <FaCircleCheck className={`w-[20px] h-[20px]`} /> : <FaRegCircleCheck className={`w-[20px] h-[20px]`} />}
                     </button>
@@ -216,6 +212,8 @@ useEffect(() => {
    
   );
 }
+
+export default BookPage;
 
 
 

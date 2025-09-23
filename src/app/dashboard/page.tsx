@@ -5,7 +5,7 @@ import { useBookStore } from "../../store/useBookstore";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Dashboard() {
+const Dashboard = () => {
   const {
     readingLists,
     recentSearches,
@@ -84,3 +84,5 @@ export default function Dashboard() {
     </section>
   );
 }
+
+export default Dashboard;

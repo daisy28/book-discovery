@@ -1,5 +1,3 @@
-// src/components/BookCard.tsx
-import Link from 'next/link';
 import { Book } from '../store/useBookstore';
 import Image from 'next/image';
 import { ImSpinner6 } from 'react-icons/im';
@@ -10,7 +8,7 @@ interface Props {
   book: Book
 }
 
-export default function BookCard({ book }: Props) {
+const BookCard = ({ book }: Props) => {
   const coverUrl = book.cover_i
     ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
     : '/placeholder.png'
@@ -23,8 +21,6 @@ export default function BookCard({ book }: Props) {
   if (!workId) return;
   setIsLoading(true);
   router.push(`/book/${workId}`);
-  setTimeout(() => {
-  }, 1000); // delay 1s to test spinner
 };
 
   
@@ -55,3 +51,5 @@ export default function BookCard({ book }: Props) {
     </div>
   )
 }
+
+export default BookCard;

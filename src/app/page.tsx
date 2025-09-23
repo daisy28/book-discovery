@@ -12,10 +12,8 @@ import There from "/public/Rectangle 45.png";
 import Kindred from "/public/Rectangle 44.png";
 import { FaQuoteLeft } from "react-icons/fa";
 import style from "../styles/landingPage.module.css";
-import Nav from "../components/nav";
-import Footer from "@/components/footer";
 
-export default function Home() {
+const Home = () => {
   return (
     <main>
       <header className={`${style.header}`}>
@@ -106,3 +104,5 @@ export default function Home() {
     </main>
   );
 }
+
+export default Home;
