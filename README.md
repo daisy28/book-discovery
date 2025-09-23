@@ -1,8 +1,11 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<!-- This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+
+
+
+Second, run the development server:
 
 ```bash
 npm run dev
@@ -33,4 +36,52 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details. -->
+
+# 📚 Next.js Book Tracker
+
+This is a [Next.js](https://nextjs.org) web application bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). It allows users to search books via the [OpenLibrary API](https://openlibrary.org/developers/api), view details, and manage reading lists with statistics and recently viewed books.
+
+---
+
+## 🚀 Getting Started (For Collaborators)
+
+Follow the steps below to run this project on your local machine.
+
+### ✅ Prerequisites
+
+Make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v18 or later recommended)
+- npm, yarn, pnpm, or bun (choose one)
+- Git (to clone the repository)
+
+---
+
+### 📥 1. Clone the Repository
+
+```bash
+git clone https://github.com/daisy28/book-discovery
+cd book-discovery
+
+📦 2. Install Dependencies
+
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+
+🧪 3. Run the Development Server
+
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+
+Then open your browser to http://localhost:3000 to view the app.

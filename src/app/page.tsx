@@ -19,7 +19,6 @@ export default function Home() {
   return (
     <main>
       <header className={`${style.header}`}>
-        {/* <Nav /> */}
         <div className={`flex flex-col p-4 items-center justify-center`}>
           <h1 className={`p-4 uppercase font-[700] text-[20px] md:text-[60px] md:mb-8 leading-[24px] text-[#fff]`}>
             bloom bookshop
@@ -104,7 +103,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* <Footer /> */}
     </main>
   );
 }

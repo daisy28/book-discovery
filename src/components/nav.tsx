@@ -23,7 +23,7 @@ const Nav = () => {
    
 
   return (
-    <nav  className={` md:pb-10 bg-[#000]`}>
+    <nav className={` md:pb-10 bg-[#000]`}>
         <div className={`p-4 flex justify-between items-center`}>
             <Link href="/" className={`w-[300px]`}>
                 <Image className={`w-[10%]`} src={BloomLogo} alt="Bloom bookstore logo" />
@@ -32,11 +32,11 @@ const Nav = () => {
                 <IoMdMenu className={`text-[#fff]`} />  
             </button>
             <div className={`hidden md:flex w-[70%] lg:w-[50%] p-4 justify-between items-center gap-8`}>
-                <Link onClick={handleToggle} href="/event" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#EA2229] ease-in-out transition-all duration-300 delay-75 ${path === "/event" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>events</Link>
-                <Link onClick={handleToggle} href="/blog" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#EA2229] ease-in-out transition-all duration-300 delay-75 ${path === "/blog" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>blog</Link>
-                <Link onClick={handleToggle} href="/more" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#EA2229] ease-in-out transition-all duration-300 delay-75 ${path === "/more" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>more</Link>
-                <Link onClick={handleToggle} href="/cart" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#EA2229] ease-in-out transition-all duration-300 delay-75 ${path === "/cart" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>cart</Link>
-                <button className={`p-2 w-[89.12px] h-[44px] bg-[#1D7B84] font-[700] text-[10px] md:text-[20px] text-[#fff] leading-[16px] cursor-pointer rounded-[15px] uppercase`}>shop</button>
+                <Link onClick={handleToggle} href="/dashboard" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#1D7B84] ease-in-out transition-all duration-300 delay-75 ${path === "/dashboard" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>dashboard</Link>
+                <Link onClick={handleToggle} href="/blog" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#1D7B84] ease-in-out transition-all duration-300 delay-75 ${path === "/blog" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>blog</Link>
+                <Link onClick={handleToggle} href="/more" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#1D7B84] ease-in-out transition-all duration-300 delay-75 ${path === "/more" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>more</Link>
+                <Link onClick={handleToggle} href="/cart" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#1D7B84] ease-in-out transition-all duration-300 delay-75 ${path === "/cart" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>cart</Link>
+                <button className={`p-2 w-[89.12px] h-[44px] bg-[#1D7B84] font-[700] text-[10px] md:text-[15px] text-[#fff] leading-[16px] cursor-pointer rounded-[15px] uppercase`}>shop</button>
                 <div>
                     <SearchBar />
                     {/* <IoSearchSharp onClick={openSearch} className={`text-[#fff] ${search ? `hidden` : `block`}`} /> */}
@@ -54,10 +54,10 @@ const Nav = () => {
                 <IoMdClose onClick={handleToggle} className={`cursor-pointer text-[#fff]`} />
             </div>
             <div className={`p-4 flex flex-col gap-8`}>
-                <Link onClick={handleToggle} href="/event" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#EA2229] ease-in-out transition-all duration-300 delay-75 ${path === "/event" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>events</Link>
-                <Link onClick={handleToggle} href="/blog" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#EA2229] ease-in-out transition-all duration-300 delay-75 ${path === "/blog" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>blog</Link>
-                <Link onClick={handleToggle} href="/more" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#EA2229] ease-in-out transition-all duration-300 delay-75 ${path === "/more" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>more</Link>
-                <Link onClick={handleToggle} href="/cart" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#EA2229] ease-in-out transition-all duration-300 delay-75 ${path === "/cart" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>cart</Link>
+                <Link onClick={handleToggle} href="/dashboard" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#1D7B84] ease-in-out transition-all duration-300 delay-75 ${path === "/dashboard" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>dashboard</Link>
+                <Link onClick={handleToggle} href="/blog" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#1D7B84] ease-in-out transition-all duration-300 delay-75 ${path === "/blog" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>blog</Link>
+                <Link onClick={handleToggle} href="/more" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#1D7B84] ease-in-out transition-all duration-300 delay-75 ${path === "/more" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>more</Link>
+                <Link onClick={handleToggle} href="/cart" className={` flex gap-2 items-center capitalize text-[18px] leading-[24px] font-[600] hover:ease-in-out hover:duration-300 hover:transition-all hover:delay-75 hover:text-[#1D7B84] ease-in-out transition-all duration-300 delay-75 ${path === "/cart" ? ` text-[#1D7B84] ` : `text-[#fff]`}`}>cart</Link>
                 <button className={`p-2 w-[89.12px] h-[44px] bg-[#1D7B84] font-[700] text-[10px] md:text-[20px] text-[#fff] leading-[16px] cursor-pointer rounded-[15px] uppercase`}>shop</button>
                 <div>
                     {/* <IoSearchSharp onClick={openSearch} className={`text-[#fff] ${search ? `hidden` : `block`}`} /> */}

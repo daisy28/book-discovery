@@ -1,5 +1,7 @@
-// src/store/useBookStore.ts
-import { create } from 'zustand'
+// /store/useBookStore.ts
+
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export interface Book {
   key: string;
@@ -9,58 +11,108 @@ export interface Book {
   first_publish_year?: number;
 }
 
+type ReadingListType = "wantToRead" | "currentlyReading" | "read";
+
 interface BookStore {
   query: string;
   books: Book[];
   loading: boolean;
   error: string | null;
   recentSearches: string[];
+  recentlyViewedBooks: Book[];
   readingLists: {
     wantToRead: Book[];
     currentlyReading: Book[];
     read: Book[];
   };
+
   setQuery: (query: string) => void;
-  fetchBooks: () => void;
-  addToList: (list: keyof BookStore['readingLists'], book: Book) => void;
+  setLoading: (loading: boolean) => void;
+  fetchBooks: () => Promise<void>;
+  addToList: (book: Book, listType: ReadingListType) => void;
+  removeFromList: (bookKey: string, listType: ReadingListType) => void;
+  addRecentlyViewedBook: (book: Book) => void;
 }
 
-export const useBookStore = create<BookStore>((set, get) => ({
-  query: '',
-  books: [],
-  loading: false,
-  error: null,
-  recentSearches: [],
-  readingLists: {
-    wantToRead: [],
-    currentlyReading: [],
-    read: [],
-  },
-  setQuery: (query) => set({ query }),
-  fetchBooks: async () => {
-    const { query, recentSearches } = get()
-    set({ loading: true, error: null })
+export const useBookStore = create<BookStore>()(
+  persist(
+    (set, get) => ({
+      query: '',
+      books: [],
+      loading: false,
+      error: null,
+      recentSearches: [],
+      recentlyViewedBooks: [],
+      readingLists: {
+        wantToRead: [],
+        currentlyReading: [],
+        read: [],
+      },
 
-    try {
-      const res = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`);
-        console.log(res)
-      const data = await res.json();
-        console.log(data)
+      setQuery: (query) => set({ query }),
 
-      set({
-        books: data.docs,
-        loading: false,
-        recentSearches: [query, ...recentSearches.slice(0, 4)]
-      })
-    } catch (e) {
-      set({ error: "Failed to fetch books", loading: false })
+      setLoading: (loading) => set({ loading }),
+
+      fetchBooks: async () => {
+        const { query, recentSearches } = get();
+        set({ loading: true, error: null });
+
+        try {
+          const res = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`);
+          const data = await res.json();
+
+          set({
+            books: data.docs,
+            loading: false,
+            recentSearches: [query, ...recentSearches.filter(q => q !== query)].slice(0, 5),
+          });
+        } catch (e) {
+          set({ error: "Failed to fetch books", loading: false });
+        }
+      },
+
+      addToList: (book, listType) => {
+        const current = get().readingLists[listType];
+        const exists = current.find(b => b.key === book.key);
+        if (exists) return;
+
+        set(state => ({
+          readingLists: {
+            ...state.readingLists,
+            [listType]: [...current, book],
+          },
+        }));
+      },
+
+      removeFromList: (bookKey, listType) => {
+        const current = get().readingLists[listType];
+        set(state => ({
+          readingLists: {
+            ...state.readingLists,
+            [listType]: current.filter(b => b.key !== bookKey),
+          },
+        }));
+      },
+
+      addRecentlyViewedBook: (book) => {
+        const current = get().recentlyViewedBooks;
+        const exists = current.find(b => b.key === book.key);
+        const updated = exists
+          ? [book, ...current.filter(b => b.key !== book.key)]
+          : [book, ...current];
+
+        set({
+          recentlyViewedBooks: updated.slice(0, 5),
+        });
+      },
+    }),
+    {
+      name: "book-store", // name in localStorage
+      partialize: (state) => ({
+        readingLists: state.readingLists,
+        recentSearches: state.recentSearches,
+        recentlyViewedBooks: state.recentlyViewedBooks,
+      }),
     }
-  },
-  addToList: (list, book) => {
-    const lists = get().readingLists
-    if (!lists[list].some((b) => b.key === book.key)) {
-      lists[list].push(book)
-      set({ readingLists: { ...lists } })
-    }
-  }
-}))
+  )
+);
