@@ -114,8 +114,9 @@ useEffect(() => {
                   src={coverUrl}
                   alt={book?.title ? book!.title : ""}
                   className={`w-[254px] h-[353px] object-cover`} 
-                  width={100}
-                  height={100}
+                  width={300} 
+                  height={450} 
+                  quality={100}
                   />
               </div>
 
@@ -195,8 +196,9 @@ useEffect(() => {
                       src={authorUrl} 
                       alt={author?.name ? author!.name : ""} 
                       className={`w-[100px] h-[100px] rounded-full object-cover md:rounded-[20px]`} 
-                      width={100}
-                      height={100}/>
+                      width={300} 
+                      height={450} 
+                      quality={100}/>
                     </div>
                     <p className={`w-[50%] md:w-[50%] font-[500] text-[10px] leading-[16px] text-[#000]`}>{typeof author?.bio === "string" ? author?.bio.toString() : author?.bio?.value}</p>
                   </div>

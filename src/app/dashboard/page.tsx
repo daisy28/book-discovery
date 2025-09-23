@@ -61,8 +61,9 @@ const Dashboard = () => {
                   <Image
                     src={coverUrl}
                     alt={book.title}
-                    width={120}
-                    height={180}
+                    width={300} 
+                    height={450} 
+                    quality={100}
                     className="w-full h-auto object-cover rounded-t"
                   />
                   <div className="p-2">

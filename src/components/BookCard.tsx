@@ -33,8 +33,9 @@ const BookCard = ({ book }: Props) => {
       </div>}
       <div className={`mb-4 cursor-pointer`}>
         <Image
-          width={100}
-          height={100}
+          width={300} 
+          height={450} 
+          quality={100}
           src={coverUrl}
           alt={book.title}
           className={`w-full h-[243px] object-cover mb-3`}

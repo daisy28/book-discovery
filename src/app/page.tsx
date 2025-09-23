@@ -56,7 +56,7 @@ const Home = () => {
       <section className={`p-4 md:mb-8`}>
         <div className={`flex justify-center md:justify-between items-center`}>
           <div className={`w-[50%] md:w-[35%]`}>
-            <Image className={`md:w-full`} src={BloomProgramming} alt="Bloom Programming image" />
+            <Image width={300} height={450} quality={100} className={`md:w-full`} src={BloomProgramming} alt="Bloom Programming image" />
           </div>
           <div className={`w-[60%] md:w-[60%]`}>
             <h3 className={`mb-4 font-[700] text-[17px] md:text-[38px] md:mb-8 leading-[16px] text-[#000] capitalize`}>bloom programming</h3>
@@ -78,11 +78,11 @@ const Home = () => {
               <p className={`text-[8px] md:text-[18px] italic font-[400] leading-[16px] md:leading-[22px] md:mb-8 text-[#000] w-[95%]`}>For the lover of thought-provoking fiction and timeless classics. Jane&apos;s picks are sure to challenge your mind and stir your emotions.</p>
             </div>
             <div className={`grid grid-cols-5 gap-2 md:w-[80%] md:mx-auto`}>
-              <Image className={`md:w-full`} src={GetIt} alt="recommended books (Get it)" />
-              <Image className={`md:w-full`} src={MadHoney} alt="recommended books (Mad honey)" />
-              <Image className={`md:w-full`} src={SmallWorld} alt="recommended books (Small world)" />
-              <Image className={`md:w-full`} src={NormalPeople} alt="recommended books (Normal people)" />
-              <Image className={`md:w-full`} src={Alchemist} alt="recommended books (Alchemist)" />
+              <Image width={300} height={450} quality={100} className={`md:w-full`} src={GetIt} alt="recommended books (Get it)" />
+              <Image width={300} height={450} quality={100} className={`md:w-full`} src={MadHoney} alt="recommended books (Mad honey)" />
+              <Image width={300} height={450} quality={100} className={`md:w-full`} src={SmallWorld} alt="recommended books (Small world)" />
+              <Image width={300} height={450} quality={100} className={`md:w-full`} src={NormalPeople} alt="recommended books (Normal people)" />
+              <Image width={300} height={450} quality={100} className={`md:w-full`} src={Alchemist} alt="recommended books (Alchemist)" />
             </div>
           </div>
 
@@ -92,11 +92,11 @@ const Home = () => {
               <p className={`text-[8px] md:text-[18px] italic font-[400] leading-[16px] md:leading-[22px] md:mb-8 text-[#000] w-[95%]`}>For the adventure-seeker and mystery enthusiast. Sarah&apos;s selections will keep you on the edge of your seat with thrilling plots and unexpected twists.</p>
             </div>
             <div className={`grid grid-cols-5 gap-2 md:w-[80%] md:mx-auto`}>
-              <Image className={`md:w-full`} src={Homecoming} alt="recommended books (Homecoming)" />
-              <Image className={`md:w-full`} src={AmericanDirt} alt="recommended books (American dirt)" />
-              <Image className={`md:w-full`} src={PaulaHawkins} alt="recommended books (Paula hawkins)" />
-              <Image className={`md:w-full`} src={There} alt="recommended books (There)" />
-              <Image className={`md:w-full`} src={Kindred} alt="recommended books (Kindred)" />
+              <Image width={300} height={450} quality={100} className={`md:w-full`} src={Homecoming} alt="recommended books (Homecoming)" />
+              <Image width={300} height={450} quality={100} className={`md:w-full`} src={AmericanDirt} alt="recommended books (American dirt)" />
+              <Image width={300} height={450} quality={100} className={`md:w-full`} src={PaulaHawkins} alt="recommended books (Paula hawkins)" />
+              <Image width={300} height={450} quality={100} className={`md:w-full`} src={There} alt="recommended books (There)" />
+              <Image width={300} height={450} quality={100} className={`md:w-full`} src={Kindred} alt="recommended books (Kindred)" />
             </div>
           </div>
         </div>

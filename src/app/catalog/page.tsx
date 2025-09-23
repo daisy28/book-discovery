@@ -1,4 +1,3 @@
-// app/search/page.tsx
 'use client'
 import { useBookStore } from '../../store/useBookstore';
 import BookCard from '@/components/BookCard';
@@ -52,3 +51,4 @@ const SearchPage = () => {
 }
 
 export default SearchPage;
+
