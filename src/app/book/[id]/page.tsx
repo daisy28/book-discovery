@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useBookStore } from "../../../store/useBookstore"; 
 import { useParams } from "next/navigation";
-import { FaBook, FaBookOpen, FaRegHeart } from "react-icons/fa";
+import { FaBookOpen, FaRegHeart } from "react-icons/fa";
 import { ImSpinner6 } from "react-icons/im";
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 import { IoIosAddCircle, IoIosAddCircleOutline } from "react-icons/io";
@@ -37,8 +37,11 @@ const BookPage = () => {
 
   const handleAdd = (listType: "wantToRead" | "currentlyReading" | "read") => {
     if (book) addToList(book, listType);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     listType === "wantToRead" ? setAdd(!add) : null;
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     listType === "currentlyReading" ? setCurrentlyReading(!currentlyReading) : null;
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     listType === "read" ? setAlreadyRead(!alreadyRead) : null;
   };
 
@@ -107,14 +110,14 @@ useEffect(() => {
                       <p>{error}</p>
                     </div>
                   </div>) : book ? (
-                    <div>
+                    <div className={`flex flex-col items-center`}>
             <h1 className={`mb-6 font-[400] text-[10px] text-center text-[#d9d9d9] leading-[16px]`}>Home / Collections / Books / {book?.title}</h1>
-            <div className={`md:grid grid-cols-2 gap-8 md:w-[600px]`}>
-              <div className={`mb-6 flex justify-center items-center md:w-full`}>
+            <div className={`md:grid grid-cols-2 gap-8 w-full md:w-[600px]`}>
+              <div className={`mb-6 w-full block mx-auto`}>
                   <Image
                   src={coverUrl}
                   alt={book?.title ? book!.title : ""}
-                  className={`w-[254px] h-[353px] object-cover`} 
+                  className={`w-full object-cover md:w-full`} 
                   width={300} 
                   height={450} 
                   quality={100}
@@ -156,7 +159,7 @@ useEffect(() => {
 
 
             <div className={`md:grid grid-cols-2 gap-8 md:w-[600px]`}>
-              <div className={`mb-4 md:w-[80%]`}>
+              <div className={`mb-4 md:w-[100%]`}>
                 <div className={`md:mb-6`}>
                   <h5 className={`uppercase font-[700] text-[#000] text-[10px] md:text-[20px] md:leading-[24px] leading-[16px] mb-2 `}>details</h5>
                   <p className={`uppercase font-[500] text-[10px] md:text-[16px] md:leading-[24px] leading-[16px] text-[#000]`}>isbn: <span className={``}>{id}</span></p>
@@ -185,12 +188,12 @@ useEffect(() => {
               </div>
               <div className={`md:flex flex-col gap-8`}>
                 <div className={`mb-4`}>
-                  <h5 className={`uppercase font-[700] text-[#000] text-[10px] leading-[16px] mb-2`}>overview</h5>
-                  <p className={`font-[500] text-[10px] leading-[16px] text-[#000]`}>{typeof book?.description === "string" ? book?.description?.toString() : book?.description?.value}</p>
+                  <h5 className={`uppercase font-[700] text-[#000] text-[10px] md:text-[20px] md:leading-[24px] leading-[16px] mb-2`}>overview</h5>
+                  <p className={`font-[500] text-[10px] md:text-[16px] md:leading-[24px] leading-[16px] text-[#000]`}>{typeof book?.description === "string" ? book?.description?.toString() : book?.description?.value}</p>
                 </div>
 
                 <div className={`mb-4 md:w-full`}>
-                  <h5 className={`uppercase font-[700] text-[#000] text-[10px] leading-[16px] mb-4`}>about the author</h5>
+                  <h5 className={`uppercase font-[700] text-[#000] text-[10px] md:text-[20px] md:leading-[24px] leading-[16px] mb-4`}>about the author</h5>
                   <div className={`flex gap-4 items-center`}>
                     <div className={`w-[40%] md:w-[50%]`}>
                       <Image 
@@ -201,7 +204,7 @@ useEffect(() => {
                       height={450} 
                       quality={100}/>
                     </div>
-                    <p className={`w-[50%] md:w-[50%] font-[500] text-[10px] leading-[16px] text-[#000]`}>{typeof author?.bio === "string" ? author?.bio.toString() : author?.bio?.value}</p>
+                    <p className={`w-[50%] md:w-[50%] font-[500] text-[10px] md:text-[16px] md:leading-[24px] leading-[16px] text-[#000]`}>{typeof author?.bio === "string" ? author?.bio.toString() : author?.bio?.value}</p>
                   </div>
                 </div>
               </div>

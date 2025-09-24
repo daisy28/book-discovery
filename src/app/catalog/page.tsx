@@ -71,11 +71,11 @@ const SearchPage = () => {
         </div>
 
         <section>
-          {loading ?(<div className={`flex bg-[#000000c6] h-[100vh] fixed top-0 bottom-0 right-0 left-0 justify-center items-center`}>
+          {loading ? (<div className={`flex bg-[#000000c6] h-[100vh] fixed top-0 bottom-0 right-0 left-0 justify-center items-center`}>
         <div className={`w-[100px] h-[100px] rounded-[10px] bg-[#fff] flex justify-center items-center text-[40px]`}>
           {<ImSpinner6 className={` text-[#000] animate-spin`} />}
         </div>
-      </div>): error ? (<div className={`flex bg-[#000000c6] h-[100vh] fixed top-0 bottom-0 right-0 left-0 justify-center items-center`}>
+      </div>) : error ? (<div className={`flex bg-[#000000c6] h-[100vh] fixed top-0 bottom-0 right-0 left-0 justify-center items-center`}>
                     <div className={`p-4 rounded-[10px] bg-[#fff] flex justify-center items-center text-[40px]`}>
                       <p>{error}</p>
                     </div>
@@ -85,7 +85,7 @@ const SearchPage = () => {
                 <BookCard book={book} />
               </div>
             })}
-          </div>): (
+          </div>) : (
           <div><p className={`text-red-600 text-center font-[700] text-[20px] leading-[16px]`}>Not found!</p></div>
         )}
         </section>
