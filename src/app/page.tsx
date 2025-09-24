@@ -15,8 +15,8 @@ import style from "../styles/landingPage.module.css";
 
 const Home = () => {
   return (
-    <main>
-      <header className={`${style.header}`}>
+    <main className={``}>
+      <header className={`${style.header} pt-8`}>
         <div className={`flex flex-col p-4 items-center justify-center`}>
           <h1 className={`p-4 uppercase font-[700] text-[20px] md:text-[60px] md:mb-8 leading-[24px] text-[#fff]`}>
             bloom bookshop
@@ -28,7 +28,7 @@ const Home = () => {
         </div>
       </header>
 
-      <section className={`my-4 p-4 md:mt-10`}>
+      <section className={`my-4 p-4 md:mt-10 md:p-6`}>
         <h2 className={`capitalize font-[700] text-[20px] md:text-[38px] leading-[30px] text-center text-[#000] mb-4 md:mb-10`}>who we are</h2>
         <div>
           <p className={`font-[400] text-[10px] md:text-[18px] text-center leading-[12px] md:leading-[22px] text-[#000] mb-4 md:mb-6`}>Welcome to Bloom, your favorite hometown bookstore now online! We&apos;re passionate about sharing the joy of reading and connecting book lovers everywhere.</p>
@@ -54,7 +54,7 @@ const Home = () => {
       </section>
 
       <section className={`p-4 md:mb-8`}>
-        <div className={`flex justify-center md:justify-between items-center`}>
+        <div className={`flex justify-center md:justify-between items-center gap-4`}>
           <div className={`w-[50%] md:w-[35%]`}>
             <Image width={300} height={450} quality={100} className={`md:w-full`} src={BloomProgramming} alt="Bloom Programming image" />
           </div>

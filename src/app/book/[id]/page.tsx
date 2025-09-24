@@ -7,6 +7,7 @@ import { FaBook, FaBookOpen, FaRegHeart } from "react-icons/fa";
 import { ImSpinner6 } from "react-icons/im";
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 import { IoIosAddCircle, IoIosAddCircleOutline } from "react-icons/io";
+import { IoBookOutline } from "react-icons/io5";
 
 interface Book {
   title: string;
@@ -108,8 +109,8 @@ useEffect(() => {
                   </div>) : book ? (
                     <div>
             <h1 className={`mb-6 font-[400] text-[10px] text-center text-[#d9d9d9] leading-[16px]`}>Home / Collections / Books / {book?.title}</h1>
-            <div className={`md:grid grid-cols-2 gap-8`}>
-              <div className={`mb-6 flex justify-center items-center`}>
+            <div className={`md:grid grid-cols-2 gap-8 md:w-[600px]`}>
+              <div className={`mb-6 flex justify-center items-center md:w-full`}>
                   <Image
                   src={coverUrl}
                   alt={book?.title ? book!.title : ""}
@@ -154,12 +155,12 @@ useEffect(() => {
             </div>
 
 
-            <div className={`md:grid grid-cols-2 gap-8`}>
+            <div className={`md:grid grid-cols-2 gap-8 md:w-[600px]`}>
               <div className={`mb-4 md:w-[80%]`}>
                 <div className={`md:mb-6`}>
                   <h5 className={`uppercase font-[700] text-[#000] text-[10px] md:text-[20px] md:leading-[24px] leading-[16px] mb-2 `}>details</h5>
-                  <p className={`uppercase font-[500] text-[10px] md:text-[16px] md:leading-[24px] leading-[16px] text-[#000]`}>isbn: <span className={`lowercase`}>{id}</span></p>
-                  <p className={`uppercase font-[500] text-[10px] md:text-[16px] md:leading-[24px] leading-[16px] text-[#000]`}>hardcover: <span className={`lowercase`}>{book?.covers?.length} pages</span></p>
+                  <p className={`uppercase font-[500] text-[10px] md:text-[16px] md:leading-[24px] leading-[16px] text-[#000]`}>isbn: <span className={``}>{id}</span></p>
+                  <p className={`uppercase font-[500] text-[10px] md:text-[16px] md:leading-[24px] leading-[16px] text-[#000]`}>hardcover: <span className={`lowercase`}>{book?.covers?.length}23 pages</span></p>
                   <p className={`uppercase font-[500] text-[10px] md:text-[16px] md:leading-[24px] leading-[16px] text-[#000]`}>size: <span className={`lowercase`}>9.4&quot; X 8.1&quot;</span></p>
                   <p className={`font-[500] text-[10px] md:text-[16px] md:leading-[24px] leading-[16px] text-[#000]`}>font size: <span className={``}>12 pt Arial</span></p>
                 </div>
@@ -172,7 +173,7 @@ useEffect(() => {
                     </button>
                     <button onClick={() => handleAdd("currentlyReading")} className={`flex justify-between items-center cursor-pointer`}>
                       📖 Currently Reading
-                      {currentlyReading ? <FaBookOpen className={`w-[20px] h-[20px]`} /> : <FaBook className={`w-[20px] h-[20px]`} />}
+                      {currentlyReading ? <FaBookOpen className={`w-[20px] h-[20px]`} /> : <IoBookOutline className={`w-[20px] h-[20px]`} />}
                     </button>
                     <button onClick={() => handleAdd("read")} className={`flex justify-between items-center cursor-pointer`}>
                       ✅ Mark as Read
@@ -195,7 +196,7 @@ useEffect(() => {
                       <Image 
                       src={authorUrl} 
                       alt={author?.name ? author!.name : ""} 
-                      className={`w-[100px] h-[100px] rounded-full object-cover md:rounded-[20px]`} 
+                      className={`w-[100px] h-[100px] md:w-[300px] md:h-[300px] rounded-full object-cover md:rounded-[20px]`} 
                       width={300} 
                       height={450} 
                       quality={100}/>
