@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { SearchBooks } from "../api/openLibrary";
 
 export interface Book {
   key: string;
@@ -25,12 +26,10 @@ interface BookStore {
     currentlyReading: Book[];
     read: Book[];
   };
-
   setQuery: (query: string) => void;
   setLoading: (loading: boolean) => void;
   fetchBooks: () => Promise<void>;
   sortBooks: (type: 'year' | 'ratings' | 'author') => void;
-
   addToList: (book: Book, listType: ReadingListType) => void;
   removeFromList: (bookKey: string, listType: ReadingListType) => void;
   addRecentlyViewedBook: (book: Book) => void;
@@ -57,26 +56,6 @@ export const useBookStore = create<BookStore>()(
 
       setLoading: (loading) => set({ loading }),
 
-      // fetchBooks: async () => {
-      //   const { query, recentSearches } = get();
-      //   if (!query.trim()) return;
-
-      //   set({ loading: true, error: null });
-
-      //   try {
-      //     const res = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`);
-      //     const data = await res.json();
-
-      //     set({
-      //       books: data.docs,
-      //       loading: false,
-      //       recentSearches: [query, ...recentSearches.filter(q => q !== query)].slice(0, 5),
-      //     });
-      //   } catch (e) {
-      //     set({ error: "Failed to fetch books", loading: false });
-      //   }
-      // },
-
       fetchBooks: async () => {
         const { query, recentSearches } = get();
         if (!query.trim()) return;
@@ -84,19 +63,18 @@ export const useBookStore = create<BookStore>()(
         set({ loading: true, error: null });
 
         try {
-          const res = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}`);
-          const data = await res.json();
+          const res = await SearchBooks(encodeURIComponent(query));
 
           set({
-            books: data.docs,
-            originalBooks: data.docs, // 🔥 Save a copy
+            books: res.docs,
+            originalBooks: res.docs, // 🔥 Save a copy
             loading: false,
             recentSearches: [query, ...recentSearches.filter(q => q !== query)].slice(0, 5),
           });
         } catch (e) {
           set({ error: "Failed to fetch books", loading: false });
         }
-},
+      },
 
       sortBooks: (type) => {
         const books = [...get().books];
@@ -124,9 +102,9 @@ export const useBookStore = create<BookStore>()(
       },
 
       resetBooks: () => {
-  const { originalBooks } = get();
-  set({ books: originalBooks });
-},
+        const { originalBooks } = get();
+        set({ books: originalBooks });
+      },
 
       addToList: (book, listType) => {
         const current = get().readingLists[listType];
@@ -163,6 +141,7 @@ export const useBookStore = create<BookStore>()(
         });
       },
     }),
+
     {
       name: "book-store",
       partialize: (state) => ({

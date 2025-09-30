@@ -8,6 +8,7 @@ import { ImSpinner6 } from "react-icons/im";
 import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 import { IoIosAddCircle, IoIosAddCircleOutline } from "react-icons/io";
 import { IoBookOutline } from "react-icons/io5";
+import { GetBookDetails, GetAuthorDetails } from "@/api/openLibrary";
 
 interface Book {
   title: string;
@@ -51,22 +52,20 @@ const BookPage = () => {
         setLoading(true);
         setError(null);
 
-        const bookRes = await fetch(`https://openlibrary.org/works/${id}.json`);
-        if (!bookRes.ok) throw new Error("Failed to fetch book details");
-        const bookData = await bookRes.json();
-        setBook(bookData);
+        const bookRes = await GetBookDetails(id);
+        if (!bookRes) throw new Error("Failed to fetch book details");
+        setBook(bookRes);
+        const authorKey = bookRes?.authors?.[0]?.author?.key;
 
-        const authorKey = bookData?.authors?.[0]?.author?.key;
         if (authorKey) {
-          const authorRes = await fetch(`https://openlibrary.org${authorKey}.json`);
-          if (authorRes.ok) {
-            const authorData = await authorRes.json();
-            setAuthor(authorData);
+          const authorRes = await GetAuthorDetails(authorKey);
+          if (authorRes) {
+            setAuthor(authorRes);
           }
         }
       } catch (err) {
         console.error(err);
-        setError(err.message || "Something went wrong");
+        setError(err?.message || "Something went wrong");
       } finally {
         setLoading(false);
       }
@@ -158,7 +157,7 @@ useEffect(() => {
             </div>
 
 
-            <div className={`md:grid grid-cols-2 gap-8 md:w-[600px]`}>
+            <div className={`w-full md:grid grid-cols-2 gap-8 md:w-[600px]`}>
               <div className={`mb-4 md:w-[100%]`}>
                 <div className={`md:mb-6`}>
                   <h5 className={`uppercase font-[700] text-[#000] text-[10px] md:text-[20px] md:leading-[24px] leading-[16px] mb-2 `}>details</h5>

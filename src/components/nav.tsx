@@ -12,13 +12,16 @@ import SearchBar from './SearchBar';
 
 const Nav = () => {
     const [toggle, setToggle] = useState(false);
+    const path = usePathname();
+
     const handleToggle = () => {
         setToggle(!toggle);
     }
-    const path = usePathname();
 
  useEffect(() => {
-    setToggle(false); 
+    if(toggle){
+        setToggle(false); 
+    }
 }, [path]);
    
 

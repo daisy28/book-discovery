@@ -13,15 +13,15 @@ const BookCard = ({ book }: Props) => {
     ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
     : '/placeholder.png'
 
-   const workId = book.key?.split('/').pop();
-   const router = useRouter();
+  const workId = book.key?.split('/').pop();
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = () => {
   if (!workId) return;
   setIsLoading(true);
   router.push(`/book/${workId}`);
-};
+  };
 
   
   return (
