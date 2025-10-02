@@ -1,4 +1,3 @@
-// src/components/SearchBar.tsx
 import { useBookStore } from '../store/useBookstore';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import debounce from '../utils/debounce';
@@ -45,12 +44,11 @@ useEffect(() => {
     const query = e.target.value
     setInput(query);
     setIsTyping(true);
-    setQuery(query);          // Store it in Zustand for global access
-    debouncedRoute(query);    // Navigate to /search?q=... after 500ms
+    setQuery(query);          
+    debouncedRoute(query);   
   }
 
   const handleBlur = () => {
-     // Only collapse if not typing (to prevent blur during debounce)
     setTimeout(() => {
     if (!isTyping) {
       setSearch(false);

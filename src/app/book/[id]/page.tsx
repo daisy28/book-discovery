@@ -9,22 +9,9 @@ import { FaCircleCheck, FaRegCircleCheck } from "react-icons/fa6";
 import { IoIosAddCircle, IoIosAddCircleOutline } from "react-icons/io";
 import { IoBookOutline } from "react-icons/io5";
 import { GetBookDetails, GetAuthorDetails } from "@/api/openLibrary";
+import { Book, Author } from "../../../store/useBookstore";
 
-interface Book {
-  title: string;
-  covers?: number[];
-  description?: string | { value: string };
-  authors?: { author: { key: string } }[];
-  first_publish_date?: string;
-  subjects?: string[];
-  revision?: number;
-}
 
-interface Author {
-  name: string;
-  bio?: string | { value: string };
-  photos: string[];
-}
 
 const BookPage = () => {
   const { id } = useParams();
@@ -63,9 +50,9 @@ const BookPage = () => {
             setAuthor(authorRes);
           }
         }
-      } catch (err) {
+      } catch (err: unknown) {
         console.error(err);
-        setError(err?.message || "Something went wrong");
+        setError(err.message || "Something went wrong");
       } finally {
         setLoading(false);
       }
@@ -82,6 +69,7 @@ useEffect(() => {
       author_name: author?.name ? [author.name] : [],
       cover_i: book.covers?.[0],
       first_publish_year: book.first_publish_date ? parseInt(book.first_publish_date) : undefined,
+      ratings_average: 0
     });
   }
 }, [book]);

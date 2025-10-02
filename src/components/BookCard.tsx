@@ -8,7 +8,7 @@ interface Props {
   book: Book
 }
 
-const BookCard = ({ book }: Props) => {
+const BookCard = ({ book }: {book: Book}) => {
   const coverUrl = book.cover_i
     ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
     : '/placeholder.png'

@@ -32,7 +32,7 @@ const Dashboard = () => {
         <ul className={`list-disc list-inside text-gray-700 text-sm`}>
           {recentSearches.length > 0 ? (
             recentSearches.map((query, i) => (
-              <li key={i}>{query}</li>
+              <li className={`capitalize font-[500] text-[18px] leading-[16px] mb-3 `} key={i}>{query}</li>
             ))
           ) : (
             <li>No recent searches</li>

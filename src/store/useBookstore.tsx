@@ -3,12 +3,24 @@ import { persist } from "zustand/middleware";
 import { SearchBooks } from "../api/openLibrary";
 
 export interface Book {
-  key: string;
+  ratings_average: number;
   title: string;
+  covers?: number[];
+  description?: string | { value: string };
+  authors?: { author: { key: string } }[];
+  first_publish_date?: string;
+  subjects?: string[];
+  revision?: number;
+  key: string;
   author_name: string[];
-  cover_i?: number;
-  first_publish_year?: number;
-  ratings_average?: number; // Add if needed for sorting
+  cover_i: number | undefined;
+  first_publish_year: number | undefined;
+}
+
+export interface Author {
+  name: string;
+  bio?: string | { value: string };
+  photos: string[];
 }
 
 type ReadingListType = "wantToRead" | "currentlyReading" | "read";
@@ -71,7 +83,8 @@ export const useBookStore = create<BookStore>()(
             loading: false,
             recentSearches: [query, ...recentSearches.filter(q => q !== query)].slice(0, 5),
           });
-        } catch (e) {
+        } catch (error) {
+          console.error(error)
           set({ error: "Failed to fetch books", loading: false });
         }
       },
